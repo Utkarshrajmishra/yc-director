@@ -3,6 +3,9 @@ import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { Author, Startup } from "@/sanity/types";
+
+export type StartupTypeCard=Omit<Startup, "author"> & {author?:Author}
 
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   
@@ -12,7 +15,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
         <p className="startup_card_date">{formateDate(post._createdAt)}</p>
         <div className="flex gap-1.5">
           <EyeIcon className="size-6 text-primary" />
-          <span className="text-16-medium">{post.view}</span>
+          <span className="text-16-medium">{post.views}</span>
         </div>
       </div>
       <div className="flex-between mt-5 gap-5">
@@ -24,7 +27,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
             <h3 className="text-26-semibold line-camp-1 mt-2">{post.title}</h3>
           </Link>
         </div>
-        <Link href={`/user/${post.author._id}`}>
+        <Link href={`/user/${post.author?._id}`}>
           <img
             src={"https://placehold.co/600x400"}
             alt="placeholder"
@@ -43,7 +46,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
         />
       </Link>
       <div className="flex-between gap-3 mt-5">
-        <Link href={`/?query=${post.category.toLowerCase()}`}>
+        <Link href={`/?query=${post.category?.toLowerCase()}`}>
           <p className="text-16-medium">{post.category}</p>
         </Link>
         <Button className="startup-card_btn" asChild>
