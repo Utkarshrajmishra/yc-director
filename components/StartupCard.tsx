@@ -5,10 +5,11 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
+  
   return (
     <li className="startup-card group w-[350px]">
       <div className="flex-between">
-        <p className="startup_card_date">{formateDate(post.__createdAt)}</p>
+        <p className="startup_card_date">{formateDate(post._createdAt)}</p>
         <div className="flex gap-1.5">
           <EyeIcon className="size-6 text-primary" />
           <span className="text-16-medium">{post.view}</span>
